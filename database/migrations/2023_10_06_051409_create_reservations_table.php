@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->unsignedBigInteger('id_route'); // Clave foránea a la tabla de rutas
+            $table->date('date');
+            $table->integer('seatAmount');
             $table->timestamps();
-            $table->unsignedBigInteger('role_id');$table->foreign('role_id')->references('id')->on('roles');
 
+            // Definir la clave foránea
+            $table->foreign('id_route')->references('id')->on('nombre_de_tabla_de_rutas');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('reservations');
     }
 };

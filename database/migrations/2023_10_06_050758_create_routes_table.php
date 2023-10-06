@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('routes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('origin');
+            $table->string('destination');
+            $table->integer('seatCount');
+            $table->decimal('basePrice', 10, 0); // Decimal con 10 dígitos en total y 0 decimales
             $table->timestamps();
-            $table->unsignedBigInteger('role_id');$table->foreign('role_id')->references('id')->on('roles');
-
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('routes');
     }
 };
