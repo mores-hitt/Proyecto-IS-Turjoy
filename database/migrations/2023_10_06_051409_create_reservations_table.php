@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Definir la clave foránea
-            $table->foreign('id_route')->references('id')->on('nombre_de_tabla_de_rutas');
+            $table->foreign('id_route')->references('id')->on('routes');
         });
     }
 
